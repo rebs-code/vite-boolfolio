@@ -21,7 +21,8 @@ export default {
     //make the get request
     getProjects() {
       axios.get(this.baseURL + this.apiUrls.projects).then((response) => {
-        console.log(response.data);
+        this.projects = response.data.data;
+        console.log(this.projects);
       }).catch((error) => {
         console.log(error);
       })
@@ -35,7 +36,10 @@ export default {
 
   data() {
     return {
-      'baseURL': 'http://127.0.0.1:8000/',
+      //initialize the projects array
+      projects: [],
+      //initialize the baseURL and apiUrls
+      baseURL: 'http://127.0.0.1:8000/',
       apiUrls: {
         'projects': 'api/projects',
       }
