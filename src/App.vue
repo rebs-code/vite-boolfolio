@@ -5,6 +5,8 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 // import AppMain
 import AppMain from './components/AppMain.vue';
+//import axios
+import axios from 'axios';
 
 export default {
   name: 'MyPortfolio',
@@ -15,9 +17,28 @@ export default {
     AppMain,
   },
 
+  methods: {
+    //make the get request
+    getProjects() {
+      axios.get(this.baseURL + this.apiUrls.projects).then((response) => {
+        console.log(response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+    },
+  },
+
+  //call the getProjects method when the component is created
+  created() {
+    this.getProjects();
+  },
+
   data() {
     return {
-      text: 'Template VueJS',
+      'baseURL': 'http://127.0.0.1:8000/',
+      apiUrls: {
+        'projects': 'api/projects',
+      }
     };
   },
 };
