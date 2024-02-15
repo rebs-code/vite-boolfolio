@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <h1>{{ text }}</h1>
+  <h1 class="text-uppercase">{{ text }}</h1>
 </template>
 
 <style scoped lang="scss"></style>
