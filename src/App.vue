@@ -51,7 +51,7 @@ export default {
 <template>
   <div id="app">
     <AppHeader />
-    <AppMain />
+    <AppMain :projects="projects" />
     <AppFooter />
   </div>
 </template>
