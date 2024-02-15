@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'DefaultTemplate',
+  name: 'MyPortfolio',
 
   data() {
     return {
