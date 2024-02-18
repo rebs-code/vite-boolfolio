@@ -34,8 +34,9 @@ export default {
 </script>
 <template>
     <div class="container">
-        <h2>Project Detail</h2>
-        <p>Project details go here</p>
+        <h2>{{ project.name }}</h2>
+        <p>{{ project.description }}</p>
+        <router-link to="/projects">Go back to projects</router-link>
     </div>
 </template>
 <style lang="scss" scoped></style>
