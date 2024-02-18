@@ -51,7 +51,8 @@ export default {
 <template>
   <div id="app">
     <AppHeader />
-    <AppMain :projects="projects" />
+    <!-- <AppMain :projects="projects" /> -->
+    <router-view />
     <AppFooter />
   </div>
 </template>
