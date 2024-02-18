@@ -1,9 +1,16 @@
 <script>
 //import axios
 import axios from 'axios';
+//import project card
+import ProjectCard from '../components/ProjectCard.vue';
 
 export default {
     name: 'ProjectList',
+
+    //import the project card component
+    components: {
+        ProjectCard,
+    },
 
     methods: {
         //make the get request
@@ -41,15 +48,7 @@ export default {
             <div class="row">
                 <div class="col-4 p-3" v-for="project in projects" :key="project.id">
                     <!-- bootstrap card for each projects -->
-                    <div class="card project-card">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-name">{{ project.name }}</h5>
-                            <p class="card-text">{{ project.description }}</p>
-                            <div class="d-flex mt-auto">
-                                <a href="/" class="btn btn-primary mt-auto mx-auto">View Project</a>
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectCard :project="project" />
                 </div>
             </div>
 
