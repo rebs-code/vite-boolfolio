@@ -16,7 +16,9 @@ export default {
             <h5 class="card-name">{{ project.name }}</h5>
             <p class="card-text">{{ project.description }}</p>
             <div class="d-flex mt-auto">
-                <a href="/" class="btn btn-primary mt-auto mx-auto">View Project</a>
+                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }" class="btn btn-primary">
+                    View Project
+                </router-link>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ import AppHome from './pages/AppHome.vue';
 import ProjectList from './pages/ProjectList.vue';
 import AppAbout from './pages/AppAbout.vue';
 import NotFound from './components/NotFound.vue';
+import ProjectDetail from './pages/ProjectDetail.vue';
 
 //create a new router instance
 const router = createRouter({
@@ -19,6 +20,11 @@ const router = createRouter({
             path: '/projects',
             name: 'projects',
             component: ProjectList
+        },
+        {
+            path: '/projects/:slug',
+            name: 'single-project',
+            component: ProjectDetail
         },
         {
             path: '/about',
