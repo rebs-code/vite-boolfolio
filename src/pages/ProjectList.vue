@@ -1,9 +1,9 @@
 <script>
 export default {
-    name: 'PostList',
+    name: 'ProjectList',
 };
 </script>
 <template>
-    <div>Post List</div>
+    <div>Project List</div>
 </template>
 <style lang="scss" scoped></style>
