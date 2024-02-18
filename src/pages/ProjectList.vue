@@ -69,7 +69,7 @@ export default {
 <template>
     <div class="container">
         <!-- loading div -->
-        <Loading v-if="!loading" />
+        <Loading v-if="loading" />
         <div v-else>
             <div class="d-flex flex-wrap">
                 <div class="col-4 p-3" v-for="project in projects">

@@ -23,7 +23,13 @@ const router = createRouter({
             path: '/about',
             name: 'about',
             component: AppAbout
-        }
+        },
+        //catch all 404 - define at the end
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: NotFound
+        },
     ]
 });
 
