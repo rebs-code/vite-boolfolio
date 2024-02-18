@@ -3,6 +3,8 @@
 import axios from 'axios';
 //import project card
 import ProjectCard from '../components/ProjectCard.vue';
+// import loading component
+import Loading from '../components/Loading.vue';
 
 export default {
     name: 'ProjectList',
@@ -10,6 +12,7 @@ export default {
     //import the project card component
     components: {
         ProjectCard,
+        Loading,
     },
 
     methods: {
@@ -66,9 +69,7 @@ export default {
 <template>
     <div class="container">
         <!-- loading div -->
-        <div v-if="loading">
-            Loading...
-        </div>
+        <Loading v-if="!loading" />
         <div v-else>
             <div class="d-flex flex-wrap">
                 <div class="col-4 p-3" v-for="project in projects">
