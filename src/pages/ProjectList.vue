@@ -15,14 +15,15 @@ export default {
     methods: {
         //make the get request
         getProjects() {
+            this.loading = true;
             axios.get(this.baseURL + this.apiUrls.projects, { params: { page: this.currentPage, } }).then((response) => {
                 this.projects = response.data.results.data;
                 this.lastPage = response.data.results.last_page; // get the last page
-                console.log(this.projects);
-                console.log('last page:' + this.lastPage);
             }).catch((error) => {
                 console.log(error);
-            })
+            }).finally(() => {
+                this.loading = false;
+            });
         },
 
         //get the next page
@@ -37,26 +38,15 @@ export default {
             this.getProjects();
         }
     },
-
     //call the getProjects method when the component is created
     created() {
         this.getProjects();
     },
-
-    // computed: {
-    //     //check if there is a next page
-    //     hasNextPage() {
-    //         let totalPages = Math.ceil(this.projects.length / 9);
-    //         // return this.currentPage < totalPages;
-    //         console.log('Number of projects:', this.projects.length);
-    //         console.log(totalPages);
-    //         console.log(this.currentPage);
-
-    //     }
-    // },
-
     data() {
         return {
+            //loading attribute
+            loading: false,
+            //initialize the current page
             currentPage: 1,
             //initialize the projects array
             projects: [],
@@ -74,17 +64,20 @@ export default {
 };
 </script>
 <template>
-    <header class="app-main bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-4 p-3" v-for="project in projects" :key="project.id">
+    <div class="container">
+        <!-- loading div -->
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            <div class="d-flex flex-wrap">
+                <div class="col-4 p-3" v-for="project in projects">
                     <!-- bootstrap card for each projects -->
                     <ProjectCard :project="project" />
                 </div>
             </div>
-            <nav>
-                <ul class="pagination
-                justify-content-center">
+            <nav class="d-flex justify-content-center">
+                <ul class="pagination">
                     <li class="page-item" v-if="currentPage > 1">
                         <a class="page-link" href="#" @click="previousPage">Previous</a>
                     </li>
@@ -94,7 +87,7 @@ export default {
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 </template>
 <style scoped lang="scss">
 .project-card {
