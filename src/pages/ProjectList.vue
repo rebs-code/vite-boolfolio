@@ -17,7 +17,9 @@ export default {
         getProjects() {
             axios.get(this.baseURL + this.apiUrls.projects, { params: { page: this.currentPage, } }).then((response) => {
                 this.projects = response.data.results.data;
+                this.lastPage = response.data.results.last_page; // get the last page
                 console.log(this.projects);
+                console.log('last page:' + this.lastPage);
             }).catch((error) => {
                 console.log(error);
             })
@@ -41,23 +43,25 @@ export default {
         this.getProjects();
     },
 
-    computed: {
-        //check if there is a next page
-        hasNextPage() {
-            let totalPages = Math.ceil(this.projects.length / 9);
-            // return this.currentPage < totalPages;
-            console.log('Number of projects:', this.projects.length);
-            console.log(totalPages);
-            console.log(this.currentPage);
+    // computed: {
+    //     //check if there is a next page
+    //     hasNextPage() {
+    //         let totalPages = Math.ceil(this.projects.length / 9);
+    //         // return this.currentPage < totalPages;
+    //         console.log('Number of projects:', this.projects.length);
+    //         console.log(totalPages);
+    //         console.log(this.currentPage);
 
-        }
-    },
+    //     }
+    // },
 
     data() {
         return {
             currentPage: 1,
             //initialize the projects array
             projects: [],
+            //initialize the last page
+            lastPage: 1,
             //initialize the baseURL and apiUrls
             baseURL: 'http://127.0.0.1:8000/',
             apiUrls: {
@@ -84,7 +88,7 @@ export default {
                     <li class="page-item" v-if="currentPage > 1">
                         <a class="page-link" href="#" @click="previousPage">Previous</a>
                     </li>
-                    <li class="page-item" v-if="projects.length > 0">
+                    <li class="page-item" v-if="projects.length > 0 && currentPage < lastPage">
                         <a class="page-link" href="#" @click="nextPage">Next</a>
                     </li>
                 </ul>
