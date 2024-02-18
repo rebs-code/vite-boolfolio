@@ -44,8 +44,12 @@ export default {
     computed: {
         //check if there is a next page
         hasNextPage() {
-            let totalPages = Math.ceil(this.projects.length / this.perPage);
-            return this.currentPage < totalPages;
+            let totalPages = Math.ceil(this.projects.length / 9);
+            // return this.currentPage < totalPages;
+            console.log('Number of projects:', this.projects.length);
+            console.log(totalPages);
+            console.log(this.currentPage);
+
         }
     },
 
