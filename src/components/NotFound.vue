@@ -1,9 +1,9 @@
 <script>
 export default {
-    name: 'AppHome',
+    name: 'NotFound',
 };
 </script>
 <template>
-    <div>Home page</div>
+    <div>Not found</div>
 </template>
 <style lang="scss" scoped></style>
