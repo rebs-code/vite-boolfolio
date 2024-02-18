@@ -15,13 +15,25 @@ export default {
     methods: {
         //make the get request
         getProjects() {
-            axios.get(this.baseURL + this.apiUrls.projects).then((response) => {
-                this.projects = response.data.data;
+            axios.get(this.baseURL + this.apiUrls.projects, { params: { page: this.currentPage, } }).then((response) => {
+                this.projects = response.data.results.data;
                 console.log(this.projects);
             }).catch((error) => {
                 console.log(error);
             })
         },
+
+        //get the next page
+        nextPage() {
+            this.currentPage++;
+            this.getProjects();
+        },
+
+        //get the previous page
+        previousPage() {
+            this.currentPage--;
+            this.getProjects();
+        }
     },
 
     //call the getProjects method when the component is created
@@ -29,8 +41,17 @@ export default {
         this.getProjects();
     },
 
+    computed: {
+        //check if there is a next page
+        hasNextPage() {
+            let totalPages = Math.ceil(this.projects.length / this.perPage);
+            return this.currentPage < totalPages;
+        }
+    },
+
     data() {
         return {
+            currentPage: 1,
             //initialize the projects array
             projects: [],
             //initialize the baseURL and apiUrls
@@ -38,6 +59,8 @@ export default {
             apiUrls: {
                 'projects': 'api/projects',
             }
+
+
         };
     },
 };
@@ -51,7 +74,17 @@ export default {
                     <ProjectCard :project="project" />
                 </div>
             </div>
-
+            <nav>
+                <ul class="pagination
+                justify-content-center">
+                    <li class="page-item" v-if="currentPage > 1">
+                        <a class="page-link" href="#" @click="previousPage">Previous</a>
+                    </li>
+                    <li class="page-item" v-if="projects.length > 0">
+                        <a class="page-link" href="#" @click="nextPage">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 </template>
