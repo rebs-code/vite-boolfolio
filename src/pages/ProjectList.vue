@@ -43,6 +43,9 @@ export default {
     },
     //call the getProjects method when the component is created
     created() {
+        //get the current page from the query parameter
+        this.currentPage = this.$route.query.page ?? 1;
+        //call the getProjects method
         this.getProjects();
     },
     data() {
