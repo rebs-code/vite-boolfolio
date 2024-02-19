@@ -23,6 +23,9 @@ export default {
     methods: {
         //make the get request
         getProjects() {
+            //empty error array
+            this.errors = [];
+            //set the loading attribute to true
             this.loading = true;
             axios.get(this.store.api.baseURL + this.store.api.apiUrls.projects, { params: { page: this.currentPage, key: this.store.projects.searchKey } }).then((response) => {
                 this.projects = response.data.results.data;
