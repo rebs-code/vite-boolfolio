@@ -5,6 +5,8 @@ import axios from 'axios';
 import ProjectCard from '../components/ProjectCard.vue';
 // import loading component
 import Loading from '../components/Loading.vue';
+//import store
+import store from '../store';
 
 export default {
     name: 'ProjectList',
@@ -19,7 +21,7 @@ export default {
         //make the get request
         getProjects() {
             this.loading = true;
-            axios.get(this.baseURL + this.apiUrls.projects, { params: { page: this.currentPage, } }).then((response) => {
+            axios.get(this.store.api.baseURL + this.store.api.apiUrls.projects, { params: { page: this.currentPage, } }).then((response) => {
                 this.projects = response.data.results.data;
                 this.lastPage = response.data.results.last_page; // get the last page
             }).catch((error) => {
@@ -58,11 +60,8 @@ export default {
             projects: [],
             //initialize the last page
             lastPage: 1,
-            //initialize the baseURL and apiUrls
-            baseURL: 'http://127.0.0.1:8000/',
-            apiUrls: {
-                'projects': 'api/projects',
-            }
+            //initialize the store
+            store,
 
 
         };

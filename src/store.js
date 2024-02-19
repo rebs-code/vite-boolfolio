@@ -7,8 +7,8 @@ const store = reactive({
         apiUrls: {
             'projects': 'api/projects',
         },
-        projects: {},
-    }
+    },
+    projects: {},
 });
 
 export default store;
