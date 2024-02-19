@@ -56,6 +56,7 @@ export default {
     created() {
         //get the current page from the query parameter
         this.currentPage = this.$route.query.page ?? 1;
+        this.store.projects.searchKey = this.$route.query.key ?? null;
         //call the getProjects method
         this.getProjects();
     },
